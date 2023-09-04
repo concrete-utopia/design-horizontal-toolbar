@@ -1,5 +1,5 @@
 {
-  "name": "Utopia Project",
+  "name": "utopia-horizontal-toolbar",
   "version": "0.1.0",
   "utopia": {
     "main-ui": "utopia/storyboard.js",
@@ -7,6 +7,7 @@
     "js": "src/index.js"
   },
   "dependencies": {
+    "chroma-js": "2.4.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "utopia-api": "0.4.1",
