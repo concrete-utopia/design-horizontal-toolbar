@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { View } from 'utopia-api'
+import { CanvasToolbar } from './toolbar'
 import '../public/globals.css'
 
 export var Playground = () => {
@@ -37,6 +38,16 @@ export var Playground = () => {
       >
         hello
       </View>
+      <CanvasToolbar
+        style={{
+          backgroundColor: '#aaaaaa33',
+          position: 'absolute',
+          left: 385,
+          top: 268,
+          width: 132,
+          height: 174,
+        }}
+      />
     </div>
   )
 }

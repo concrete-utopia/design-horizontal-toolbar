@@ -1,5 +1,5 @@
-import * as React from "react";
-import { UtopiaTheme } from "uuiui";
+import React from 'react'
+import { UtopiaTheme } from 'uuiui'
 import {
   colorTheme,
   FlexColumn,
@@ -10,91 +10,107 @@ import {
   Tooltip as TooltipWithoutSpanFixme,
   useColorTheme,
   UtopiaStyles,
-} from "uuiui";
-import { Utils } from "uuiui-deps";
-export const useCheckInsertModeForElementType = (elementType, options) => {
-  return true;
-};
+} from 'uuiui'
+import { Utils } from 'uuiui-deps'
+export const useCheckInsertModeForElementType = (
+  elementType,
+  options,
+) => {
+  return true
+}
 
 export const useEnterDrawToInsertForButton = () => {
   return () => {
     // Dummy implementation
-  };
-};
+  }
+}
 
 export const useEnterDrawToInsertForConditional = () => {
   return () => {
     // Dummy implementation
-  };
-};
+  }
+}
 
 export const useEnterDrawToInsertForDiv = () => {
   return () => {
     // Dummy implementation
-  };
-};
+  }
+}
 
 export const useEnterDrawToInsertForImage = () => {
   return () => {
     // Dummy implementation
-  };
-};
+  }
+}
 
 export const useEnterTextEditMode = () => {
   return () => {
     // Dummy implementation
-  };
-};
+  }
+}
 
 const useDispatch = () => {
   return (actions) => {
     // Dummy implementation
-  };
-};
+  }
+}
 
 const RightMenuTab = {
-  Insert: "insert",
-  Inspector: "inspector",
-};
+  Insert: 'insert',
+  Inspector: 'inspector',
+}
 
 const togglePanel = () => {
   // Dummy implementation
-};
+}
 
 const stopPropagation = (e) => {
-  e.stopPropagation();
-};
+  e.stopPropagation()
+}
 
-export const InsertConditionalButtonTestId = "insert-mode-conditional";
+export const InsertConditionalButtonTestId =
+  'insert-mode-conditional'
 
-export const CanvasToolbarId = "canvas-toolbar";
+export const CanvasToolbarId = 'canvas-toolbar'
 
 export const CanvasToolbar = React.memo(() => {
-  const dispatch = useDispatch();
-  const theme = useColorTheme();
+  const dispatch = useDispatch()
+  const theme = useColorTheme()
 
-  const selectedViewsRef = { current: [] };
-  const projectContentsRef = { current: {} };
+  const selectedViewsRef = { current: [] }
+  const projectContentsRef = { current: {} }
 
-  const divInsertion = useCheckInsertModeForElementType("div");
-  const insertDivCallback = useEnterDrawToInsertForDiv();
-  const imgInsertion = useCheckInsertModeForElementType("img");
-  const insertImgCallback = useEnterDrawToInsertForImage();
-  const textInsertion = useCheckInsertModeForElementType("span", {
-    textEdit: true,
-  });
-  const insertTextCallback = useEnterTextEditMode();
-  const buttonInsertion = useCheckInsertModeForElementType("button");
-  const insertButtonCallback = useEnterDrawToInsertForButton();
-  const conditionalInsertion = useCheckInsertModeForElementType("div", {
-    wrapInConditional: true,
-  });
-  const insertConditionalCallback = useEnterDrawToInsertForConditional();
+  const divInsertion = useCheckInsertModeForElementType(
+    'div',
+  )
+  const insertDivCallback = useEnterDrawToInsertForDiv()
+  const imgInsertion = useCheckInsertModeForElementType(
+    'img',
+  )
+  const insertImgCallback = useEnterDrawToInsertForImage()
+  const textInsertion = useCheckInsertModeForElementType(
+    'span',
+    {
+      textEdit: true,
+    },
+  )
+  const insertTextCallback = useEnterTextEditMode()
+  const buttonInsertion = useCheckInsertModeForElementType(
+    'button',
+  )
+  const insertButtonCallback = useEnterDrawToInsertForButton()
+  const conditionalInsertion = useCheckInsertModeForElementType(
+    'div',
+    {
+      wrapInConditional: true,
+    },
+  )
+  const insertConditionalCallback = useEnterDrawToInsertForConditional()
 
   /**
    * @type {"closed" | "insert" | "convert"}
    */
-  const insertMenuMode = "closed";
+  const insertMenuMode = 'closed'
 
   const openFloatingInsertMenuCallback = React.useCallback(() => {
     dispatch([
@@ -103,22 +119,22 @@ export const CanvasToolbar = React.memo(() => {
       //   parentPath: null,
       //   indexPosition: null,
       // }),
-    ]);
-  }, [dispatch]);
+    ])
+  }, [dispatch])
   const openFloatingConvertMenuCallback = React.useCallback(() => {
     dispatch([
       // openFloatingInsertMenu({
       //   insertMenuMode: "convert",
       // }),
-    ]);
-  }, [dispatch]);
+    ])
+  }, [dispatch])
   const openFloatingWrapInMenuCallback = React.useCallback(() => {
     dispatch([
       // openFloatingInsertMenu({
       //   insertMenuMode: "wrap",
       // }),
-    ]);
-  }, [dispatch]);
+    ])
+  }, [dispatch])
 
   const wrapInDivCallback = React.useCallback(() => {
     dispatch([
@@ -128,52 +144,52 @@ export const CanvasToolbar = React.memo(() => {
       //   ),
       //   importsToAdd: {},
       // }),
-    ]);
-  }, [dispatch, selectedViewsRef, projectContentsRef]);
+    ])
+  }, [dispatch, selectedViewsRef, projectContentsRef])
 
   const clickSelectModeButton = React.useCallback(() => {
     dispatch([
       // switchEditorMode(EditorModes.selectMode())
-    ]);
-  }, [dispatch]);
+    ])
+  }, [dispatch])
 
-  const insertMenuSelected = false;
+  const insertMenuSelected = false
 
   const selectInsertMenuPane = React.useCallback(() => {
-    let actions = [];
+    let actions = []
     if (!insertMenuSelected) {
       // actions.push(setPanelVisibility("rightmenu", true));
     }
     // actions.push(setRightMenuTab(RightMenuTab.Insert));
-    dispatch(actions);
-  }, [dispatch, insertMenuSelected]);
+    dispatch(actions)
+  }, [dispatch, insertMenuSelected])
 
-  const zoomLevel = 1;
+  const zoomLevel = 1
 
   const zoomIn = React.useCallback(
     () =>
       dispatch([
         // CanvasActions.zoom(Utils.increaseScale(zoomLevel))
       ]),
-    [dispatch, zoomLevel]
-  );
+    [dispatch, zoomLevel],
+  )
   const zoomOut = React.useCallback(
     () =>
       dispatch([
         // CanvasActions.zoom(Utils.decreaseScale(zoomLevel))
       ]),
-    [dispatch, zoomLevel]
-  );
+    [dispatch, zoomLevel],
+  )
 
   const zoom100pct = React.useCallback(
     () =>
       dispatch([
         // CanvasActions.zoom(1)
       ]),
-    [dispatch]
-  );
+    [dispatch],
+  )
 
-  const isLiveMode = false;
+  const isLiveMode = false
 
   const toggleLiveMode = React.useCallback(() => {
     if (isLiveMode) {
@@ -181,77 +197,86 @@ export const CanvasToolbar = React.memo(() => {
     } else {
       // dispatch([switchEditorMode(EditorModes.liveMode())]);
     }
-  }, [dispatch, isLiveMode]);
+  }, [dispatch, isLiveMode])
 
   const resetCanvasCallback = React.useCallback(() => {
     // dispatch([resetCanvas()]);
-  }, [dispatch]);
+  }, [dispatch])
 
   const toggleCodeEditorVisible = React.useCallback(() => {
     // dispatch([togglePanel("codeEditor")]);
-  }, [dispatch]);
+  }, [dispatch])
 
   const toggleInspectorVisible = React.useCallback(() => {
     // dispatch([togglePanel("rightmenu")]);
-  }, [dispatch]);
+  }, [dispatch])
 
   const toggleNavigatorVisible = React.useCallback(() => {
     // dispatch([togglePanel("leftmenu")]);
-  }, [dispatch]);
+  }, [dispatch])
 
   return (
     <FlexColumn
       id={CanvasToolbarId}
       style={{
         gap: 6,
-        alignItems: "stretch",
+        alignItems: 'stretch',
         width: 64,
         backgroundColor: theme.inspectorBackground.value,
-        borderRadius: UtopiaTheme.panelStyles.panelBorderRadius,
+        borderRadius:
+          UtopiaTheme.panelStyles.panelBorderRadius,
         boxShadow: `3px 4px 10px 0px ${UtopiaTheme.panelStyles.panelShadowColor}`,
-        pointerEvents: "initial",
+        pointerEvents: 'initial',
       }}
       onMouseDown={stopPropagation}
       onClick={stopPropagation}
     >
       <FlexColumn style={{ padding: 4 }}>
         {/* ------------------------------------ */}
-        <header style={{ paddingLeft: 4, fontSize: 10, fontWeight: 500 }}>
+        <header
+          style={{
+            paddingLeft: 4,
+            fontSize: 10,
+            fontWeight: 500,
+          }}
+        >
           Tools
         </header>
-        <FlexRow style={{ flexWrap: "wrap", gap: 4, padding: 4 }}>
-          <Tooltip title="Select" placement="bottom">
+        <FlexRow
+          style={{ flexWrap: 'wrap', gap: 4, padding: 4 }}
+        >
+          <Tooltip title='Select' placement='bottom'>
             <InsertModeButton
-              iconType="pointer"
-              iconCategory="tools"
+              iconType='pointer'
+              iconCategory='tools'
               onClick={clickSelectModeButton}
             />
           </Tooltip>
-          <Tooltip title="Insert text" placement="bottom">
+          <Tooltip title='Insert text' placement='bottom'>
             <InsertModeButton
-              iconType="pure-text"
+              iconType='pure-text'
               primary={textInsertion}
               onClick={insertTextCallback}
             />
           </Tooltip>
-          <Tooltip title="Zoom in" placement="bottom">
+          <Tooltip title='Zoom in' placement='bottom'>
             <InsertModeButton
-              iconType="magnifyingglass-plus"
-              iconCategory="semantic"
+              iconType='magnifyingglass-plus'
+              iconCategory='semantic'
               onClick={zoomIn}
             />
           </Tooltip>
-          <Tooltip title="Zoom out" placement="bottom">
+          <Tooltip title='Zoom out' placement='bottom'>
             <InsertModeButton
-              iconType="magnifyingglass-minus"
-              iconCategory="semantic"
+              iconType='magnifyingglass-minus'
+              iconCategory='semantic'
               onClick={zoomOut}
             />
           </Tooltip>
-          <Tooltip title="Zoom to 100%" placement="bottom">
+          <Tooltip title='Zoom to 100%' placement='bottom'>
             <SquareButton
               highlight
-              style={{ textAlign: "center", width: "100%" }}
+              style={{ textAlign: 'center', width: '100%' }}
               onClick={zoom100pct}
             >
               {zoomLevel * 100}%
@@ -262,50 +287,67 @@ export const CanvasToolbar = React.memo(() => {
 
       {/* ------------------------------------ */}
       <FlexColumn style={{ padding: 4 }}>
-        <header style={{ paddingLeft: 4, fontSize: 10, fontWeight: 500 }}>
+        <header
+          style={{
+            paddingLeft: 4,
+            fontSize: 10,
+            fontWeight: 500,
+          }}
+        >
           Insert
         </header>
-        <FlexRow style={{ flexWrap: "wrap", gap: 4, padding: 4 }}>
-          <Tooltip title="Insert div" placement="bottom">
+        <FlexRow
+          style={{ flexWrap: 'wrap', gap: 4, padding: 4 }}
+        >
+          <Tooltip title='Insert div' placement='bottom'>
             <InsertModeButton
-              iconType="view"
+              iconType='view'
               primary={divInsertion}
               onClick={insertDivCallback}
             />
           </Tooltip>
-          <Tooltip title="Insert image" placement="bottom">
+          <Tooltip title='Insert image' placement='bottom'>
             <InsertModeButton
-              iconType="image"
+              iconType='image'
               primary={imgInsertion}
               onClick={insertImgCallback}
             />
           </Tooltip>
-          <Tooltip title="Insert button" placement="bottom">
+          <Tooltip title='Insert button' placement='bottom'>
             <InsertModeButton
-              iconType="clickable"
+              iconType='clickable'
               primary={buttonInsertion}
               onClick={insertButtonCallback}
             />
           </Tooltip>
-          <Tooltip title="Choose and insert a component" placement="bottom">
+          <Tooltip
+            title='Choose and insert a component'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="componentinstance"
-              primary={insertMenuMode === "insert"}
+              iconType='componentinstance'
+              primary={insertMenuMode === 'insert'}
               onClick={openFloatingInsertMenuCallback}
             />
           </Tooltip>
-          <Tooltip title="Insert conditional" placement="bottom">
+          <Tooltip
+            title='Insert conditional'
+            placement='bottom'
+          >
             <InsertModeButton
               testid={InsertConditionalButtonTestId}
-              iconType="conditional"
+              iconType='conditional'
               primary={conditionalInsertion}
               onClick={insertConditionalCallback}
             />
           </Tooltip>
-          <Tooltip title="Open insert menu" placement="bottom">
+          <Tooltip
+            title='Open insert menu'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="dotdotdot"
-              iconCategory="semantic"
+              iconType='dotdotdot'
+              iconCategory='semantic'
               primary={insertMenuSelected}
               onClick={selectInsertMenuPane}
             />
@@ -314,18 +356,26 @@ export const CanvasToolbar = React.memo(() => {
       </FlexColumn>
       {/* ------------------------------------ */}
       <FlexColumn style={{ padding: 4 }}>
-        <header style={{ paddingLeft: 4, fontSize: 10, fontWeight: 500 }}>
+        <header
+          style={{
+            paddingLeft: 4,
+            fontSize: 10,
+            fontWeight: 500,
+          }}
+        >
           Convert
         </header>
-        <FlexRow style={{ flexWrap: "wrap", gap: 4, padding: 4 }}>
+        <FlexRow
+          style={{ flexWrap: 'wrap', gap: 4, padding: 4 }}
+        >
           <Tooltip
-            title="Converts an element or component into another"
-            placement="bottom"
+            title='Converts an element or component into another'
+            placement='bottom'
           >
             <InsertModeButton
-              iconType="convertobject"
-              iconCategory="semantic"
-              primary={insertMenuMode === "convert"}
+              iconType='convertobject'
+              iconCategory='semantic'
+              primary={insertMenuMode === 'convert'}
               onClick={openFloatingConvertMenuCallback}
             />
           </Tooltip>
@@ -334,21 +384,35 @@ export const CanvasToolbar = React.memo(() => {
 
       {/* ------------------------------------ */}
       <FlexColumn style={{ padding: 4 }}>
-        <header style={{ paddingLeft: 4, fontSize: 10, fontWeight: 500 }}>
+        <header
+          style={{
+            paddingLeft: 4,
+            fontSize: 10,
+            fontWeight: 500,
+          }}
+        >
           Organise
         </header>
-        <FlexRow style={{ flexWrap: "wrap", gap: 4, padding: 4 }}>
-          <Tooltip title="Wrap selection in div" placement="bottom">
+        <FlexRow
+          style={{ flexWrap: 'wrap', gap: 4, padding: 4 }}
+        >
+          <Tooltip
+            title='Wrap selection in div'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="group-open"
+              iconType='group-open'
               onClick={wrapInDivCallback}
             />
           </Tooltip>
-          <Tooltip title="Wrap selection in an element" placement="bottom">
+          <Tooltip
+            title='Wrap selection in an element'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="designtool-larger"
-              iconCategory="semantic"
-              primary={insertMenuMode === "wrap"}
+              iconType='designtool-larger'
+              iconCategory='semantic'
+              primary={insertMenuMode === 'wrap'}
               onClick={openFloatingWrapInMenuCallback}
             />
           </Tooltip>
@@ -356,48 +420,68 @@ export const CanvasToolbar = React.memo(() => {
       </FlexColumn>
       {/* ------------------------------------ */}
       <FlexColumn style={{ padding: 4 }}>
-        <header style={{ paddingLeft: 4, fontSize: 10, fontWeight: 500 }}>
+        <header
+          style={{
+            paddingLeft: 4,
+            fontSize: 10,
+            fontWeight: 500,
+          }}
+        >
           Editor
         </header>
-        <FlexRow style={{ flexWrap: "wrap", gap: 4, padding: 4 }}>
-          <Tooltip title="Toggle Live Mode" placement="bottom">
+        <FlexRow
+          style={{ flexWrap: 'wrap', gap: 4, padding: 4 }}
+        >
+          <Tooltip
+            title='Toggle Live Mode'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="playbutton"
-              iconCategory="semantic"
+              iconType='playbutton'
+              iconCategory='semantic'
               primary={isLiveMode}
               onClick={toggleLiveMode}
               keepActiveInLiveMode
             />
           </Tooltip>
-          <Tooltip title="Reset Canvas" placement="bottom">
+          <Tooltip title='Reset Canvas' placement='bottom'>
             <InsertModeButton
-              iconType="refresh"
-              iconCategory="semantic"
+              iconType='refresh'
+              iconCategory='semantic'
               onClick={resetCanvasCallback}
               keepActiveInLiveMode
             />
           </Tooltip>
 
-          <Tooltip title="Toggle Navigator (⌘⌥1)" placement="bottom">
+          <Tooltip
+            title='Toggle Navigator (⌘⌥1)'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="navigator-larger"
-              iconCategory="semantic"
+              iconType='navigator-larger'
+              iconCategory='semantic'
               onClick={toggleNavigatorVisible}
               keepActiveInLiveMode
             />
           </Tooltip>
-          <Tooltip title="Toggle Inspector (⌘⌥2)" placement="bottom">
+          <Tooltip
+            title='Toggle Inspector (⌘⌥2)'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="inspector-larger"
-              iconCategory="semantic"
+              iconType='inspector-larger'
+              iconCategory='semantic'
               onClick={toggleInspectorVisible}
               keepActiveInLiveMode
             />
           </Tooltip>
-          <Tooltip title="Toggle Code Editor (⌘.)" placement="bottom">
+          <Tooltip
+            title='Toggle Code Editor (⌘.)'
+            placement='bottom'
+          >
             <InsertModeButton
-              iconType="codymccodeface-larger"
-              iconCategory="semantic"
+              iconType='codymccodeface-larger'
+              iconCategory='semantic'
               onClick={toggleCodeEditorVisible}
               keepActiveInLiveMode
             />
@@ -405,8 +489,8 @@ export const CanvasToolbar = React.memo(() => {
         </FlexRow>
       </FlexColumn>
     </FlexColumn>
-  );
-});
+  )
+})
 
 const InsertModeButton = React.memo(
   /**
@@ -420,10 +504,11 @@ const InsertModeButton = React.memo(
    * @param {Function} props.onClick - The click handler for the button.
    */
   (props) => {
-    const keepActiveInLiveMode = props.keepActiveInLiveMode ?? false;
-    const primary = props.primary ?? false;
-    const canvasInLiveMode = false;
-    const iconCategory = props.iconCategory ?? "element";
+    const keepActiveInLiveMode =
+      props.keepActiveInLiveMode ?? false
+    const primary = props.primary ?? false
+    const canvasInLiveMode = false
+    const iconCategory = props.iconCategory ?? 'element'
 
     return (
       <SquareButton
@@ -437,14 +522,14 @@ const InsertModeButton = React.memo(
         <Icn
           category={iconCategory}
           type={props.iconType}
-          color={"main"}
+          color={'main'}
           width={18}
           height={18}
         />
       </SquareButton>
-    );
-  }
-);
+    )
+  },
+)
 
 const Tooltip = (props) => {
   return (
@@ -452,5 +537,5 @@ const Tooltip = (props) => {
       {/* TODO why do we need to wrap the children in a span? */}
       <span>{props.children}</span>
     </TooltipWithoutSpanFixme>
-  );
-};
+  )
+}
